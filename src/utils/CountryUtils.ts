@@ -1,11 +1,10 @@
-export class CountryUtils {
+import { SupportedCountry } from "../models/SupportedCountry"
 
-  private static KNOWN_COUNTRIES = [
-    "kenya"
-  ]
+export class CountryUtils {
 
   public static isKnownCountry(countryName: string | null): boolean {
     const lowercaseCountry = countryName?.toLocaleLowerCase()
-    return lowercaseCountry != null && this.KNOWN_COUNTRIES.includes(lowercaseCountry)
+    return lowercaseCountry != null && Object.values(SupportedCountry)
+      .some((country: string) => country === lowercaseCountry)
   }
 }
