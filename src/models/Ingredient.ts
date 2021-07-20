@@ -1,4 +1,6 @@
+import { Image } from "./Image";
+
 export interface Ingredient {
   name: string,
-  imageUrl: string
+  image: Image
 }
