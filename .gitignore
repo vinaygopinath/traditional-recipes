@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Ignore auto-generated schema validator file(s)
+/src/models/**/*.validator.ts

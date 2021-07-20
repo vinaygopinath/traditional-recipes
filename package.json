@@ -7,7 +7,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "24.0.19",
-    "@types/node": "^12.0.0",
+    "@types/node": "^16.3.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
@@ -27,6 +27,10 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "prestart": "yarn generate-validation-schema && yarn validate-recipes",
+    "prebuild": "yarn generate-validation-schema && yarn validate-recipes",
+    "generate-validation-schema": "typescript-json-validator --useNamedExport src/models/Recipe.ts Recipe && sed -i \"/^export [{]/d\" src/models/Recipe.validator.ts",
+    "validate-recipes": "ts-node -O '{\"module\": \"commonjs\"}' src/scripts/validate-recipes.ts",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -51,6 +55,8 @@
     ]
   },
   "devDependencies": {
-    "jest-extended": "^0.11.5"
+    "jest-extended": "^0.11.5",
+    "ts-node": "^10.1.0",
+    "typescript-json-validator": "^2.4.2"
   }
 }
