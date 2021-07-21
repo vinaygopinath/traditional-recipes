@@ -1,14 +1,14 @@
 import { Credit } from "./Credit";
 import { HarmfulIngredient } from "./HarmfulIngredient";
 import { Image } from "./Image";
-import { Ingredient } from "./Ingredient";
+import { RecipeIngredient } from "./RecipeIngredient";
 
 export interface Recipe {
   title: string,
   subtitle: string | null,
   images: Image[],
   description: string,
-  ingredients: Ingredient[],
+  ingredients: RecipeIngredient[],
   harmfulIngredients: HarmfulIngredient[],
   credit: Credit[]
 }

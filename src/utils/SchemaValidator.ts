@@ -7,8 +7,8 @@ export class SchemaValidator {
 
   private static INGREDIENT_NAME_REGEX = /{{ingredient_([a-z_]*)}}/
 
-  public static validateIngredients() {
-    this.getAllFilesInFolder("src/ingredients/")
+  public static validateIngredients(ingredientFolder: string = "src/ingredients/") {
+    this.getAllFilesInFolder(ingredientFolder)
       .filter(filePath => filePath.endsWith(".json"))
       // Not using map + forEach here to avoid loading all files
       // into memory at once, potentially causing a memory issue
@@ -30,10 +30,17 @@ export class SchemaValidator {
       })
   }
 
-  private static expandIngredients(recipeJsonData: any, ingredientCollection: { [key: string]: Ingredient }) {
-    if (recipeJsonData && recipeJsonData.ingredients
+  private static expandIngredients(
+    recipeJsonData: any,
+    ingredientCollection: { [key: string]: Ingredient }
+  ) {
+    if (
+      recipeJsonData
+      && recipeJsonData.ingredients
       && Array.isArray(recipeJsonData.ingredients)
-      && recipeJsonData.ingredients.every((recipeIngredient: any) => recipeIngredient.hasOwnProperty('ingredient'))
+      && recipeJsonData.ingredients.every(
+        (recipeIngredient: any) => recipeIngredient.hasOwnProperty('ingredient')
+      )
     ) {
       const { ingredients: recipeIngredients } = recipeJsonData
       recipeJsonData.ingredients = recipeIngredients
