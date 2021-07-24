@@ -57,4 +57,12 @@ export class NodeFileUtils {
 
     return jsonData
   }
+
+  public static writeFile(filePath: string, fileContents: string) {
+    try {
+      fs.writeFileSync(filePath, fileContents)
+    } catch (e: any) {
+      console.error(e)
+    }
+  }
 }
