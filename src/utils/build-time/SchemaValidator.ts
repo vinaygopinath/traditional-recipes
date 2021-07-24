@@ -8,8 +8,7 @@ export class SchemaValidator {
   private static INGREDIENT_NAME_REGEX = /{{ingredient_([a-z_]*)}}/
 
   public static validateIngredients(ingredientFolder: string = "src/ingredients/") {
-    NodeFileUtils.getAllFilesInFolder(ingredientFolder)
-      .filter(filePath => filePath.endsWith(".json"))
+    NodeFileUtils.getAllJSONFilesInFolder(ingredientFolder)
       // Not using map + forEach here to avoid loading all files
       // into memory at once, potentially causing a memory issue
       .forEach(filePath => validateIngredient(NodeFileUtils.getJSONFromFile(filePath)))
@@ -18,8 +17,7 @@ export class SchemaValidator {
 
   public static validateRecipes(recipeFolder: string = "src/recipes/") {
     const ingredientCollection: { [key: string]: Ingredient, } = {}
-    NodeFileUtils.getAllFilesInFolder(recipeFolder)
-      .filter(filePath => filePath.endsWith(".json"))
+    NodeFileUtils.getAllJSONFilesInFolder(recipeFolder)
       // Not using map + forEach here to avoid loading all files
       // into memory at once, potentially causing a memory issue
       .forEach(filePath => {

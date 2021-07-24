@@ -3,6 +3,11 @@ import path from "path"
 
 export class NodeFileUtils {
 
+  public static getAllJSONFilesInFolder(currentDir: string): string[] {
+    return this.getAllFilesInFolder(currentDir)
+      .filter(filePath => filePath.endsWith(".json"))
+  }
+
   // Reference: https://stackoverflow.com/a/28289589
   // CC-BY-SA 3.0
   public static getAllFilesInFolder(currentDir: string): string[] {
@@ -24,6 +29,7 @@ export class NodeFileUtils {
         return this.getAllFilesInFolder(filePath)
       }
     }).flat(10)
+      .sort()
   }
 
   public static doesFileExist(currentDir: string, relativeFilePath: string): boolean {
