@@ -15,7 +15,7 @@ export class RecipeMapGenerator {
       )
 
     NodeFileUtils.writeFile(
-      'src/recipes/RecipeMap.ts',
+      'src/utils/RecipeMap.ts',
       `export const RecipeMap: { [key: string]: string[] } = ${JSON.stringify(recipeMap, null, 2)}`
     )
   }
@@ -28,6 +28,6 @@ export class RecipeMapGenerator {
   }
 
   private static getCountryRecipePath(supportedCountry: SupportedCountry): string {
-    return `src/recipes/${supportedCountry}/`
+    return `public/recipes/${supportedCountry}/`
   }
 }

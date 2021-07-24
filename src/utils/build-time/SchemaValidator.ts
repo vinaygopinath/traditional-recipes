@@ -7,7 +7,7 @@ export class SchemaValidator {
 
   private static INGREDIENT_NAME_REGEX = /{{ingredient_([a-z_]*)}}/
 
-  public static validateIngredients(ingredientFolder: string = "src/ingredients/") {
+  public static validateIngredients(ingredientFolder: string = "public/ingredients/") {
     NodeFileUtils.getAllJSONFilesInFolder(ingredientFolder)
       // Not using map + forEach here to avoid loading all files
       // into memory at once, potentially causing a memory issue
@@ -15,7 +15,7 @@ export class SchemaValidator {
   }
 
 
-  public static validateRecipes(recipeFolder: string = "src/recipes/") {
+  public static validateRecipes(recipeFolder: string = "public/recipes/") {
     const ingredientCollection: { [key: string]: Ingredient, } = {}
     NodeFileUtils.getAllJSONFilesInFolder(recipeFolder)
       // Not using map + forEach here to avoid loading all files
@@ -69,13 +69,13 @@ export class SchemaValidator {
     const ingredientFilePath = [
       `${ingredientName}.json`,
       `${ingredientName}/${ingredientName}.json`
-    ].find(relativeFilePath => NodeFileUtils.doesFileExist("src/ingredients/", relativeFilePath))
+    ].find(relativeFilePath => NodeFileUtils.doesFileExist("public/ingredients/", relativeFilePath))
 
     if (!ingredientFilePath) {
       throw Error(`Could not find a JSON file for the ingredient ${ingredientName}`)
     }
 
-    return NodeFileUtils.getJSONFromFile(`src/ingredients/${ingredientFilePath}`) as Ingredient
+    return NodeFileUtils.getJSONFromFile(`public/ingredients/${ingredientFilePath}`) as Ingredient
   }
 
   private static getIngredientNameFromStringOrThrow(ingredientString: string): string {
