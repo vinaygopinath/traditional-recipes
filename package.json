@@ -11,6 +11,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "axios": "^0.21.1",
     "grommet": "^2.17.3",
     "grommet-icons": "^4.5.0",
     "i18next": "^20.3.1",
@@ -27,11 +28,12 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "prestart": "yarn generate-validation-schema && yarn validate-schema",
+    "prestart": "yarn generate-validation-schema && yarn validate-schema && yarn generate-recipe-map",
     "prebuild": "yarn generate-validation-schema && yarn validate-schema",
     "generate-recipe-schema": "typescript-json-validator --useNamedExport src/models/Recipe.ts Recipe && sed -i \"/^export [{]/d\" src/models/Recipe.validator.ts",
     "generate-ingredient-schema": "typescript-json-validator --useNamedExport src/models/Ingredient.ts Ingredient && sed -i \"/^export [{]/d\" src/models/Ingredient.validator.ts",
     "generate-validation-schema": "yarn generate-recipe-schema && yarn generate-ingredient-schema",
+    "generate-recipe-map": "ts-node -O '{\"module\": \"commonjs\"}' src/scripts/generate-recipe-map.ts",
     "validate-schema": "ts-node -O '{\"module\": \"commonjs\"}' src/scripts/validate-schema.ts",
     "start": "react-scripts start",
     "build": "react-scripts build",

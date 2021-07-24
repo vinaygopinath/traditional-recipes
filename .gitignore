@@ -25,4 +25,4 @@ yarn-error.log*
 # Ignore auto-generated schema validator file(s)
 /src/models/**/*.validator.ts
 # Ignore auto-generated country-to-recipe map file
-/src/recipes/RecipeMap.ts
+/src/utils/RecipeMap.ts

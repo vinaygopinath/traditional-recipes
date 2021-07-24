@@ -1,13 +1,9 @@
 import { Credit } from "./Credit";
 import { HarmfulIngredient } from "./HarmfulIngredient";
-import { Image } from "./Image";
 import { RecipeIngredient } from "./RecipeIngredient";
+import { RecipePreview } from "./RecipePreview";
 
-export interface Recipe {
-  title: string,
-  subtitle: string | null,
-  images: Image[],
-  description: string,
+export interface Recipe extends RecipePreview {
   ingredients: RecipeIngredient[],
   harmfulIngredients: HarmfulIngredient[],
   credit: Credit[]
