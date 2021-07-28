@@ -1,7 +1,8 @@
 {
   "name": "traditional-recipes",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://traditional.recipes",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +14,7 @@
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
+    "gh-pages": "^3.2.3",
     "grommet": "^2.17.3",
     "grommet-icons": "^4.5.0",
     "i18next": "^20.3.1",
@@ -43,6 +45,8 @@
     "validate-schema": "ts-node -O '{\"module\": \"commonjs\"}' src/scripts/validate-schema.ts",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
