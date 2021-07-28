@@ -1,0 +1,38 @@
+{
+  "internalName": "ugali",
+  "title": "recipe_ugali_title",
+  "subtitle": "recipe_ugali_subtitle",
+  "description": "recipe_ugali_description",
+  "ingredients": [
+    {
+      "ingredient": "{{ingredient_maizemeal}}",
+      "quantity": "recipe_ugali_ingredient_maizemeal_quantity"
+    },
+    {
+      "ingredient": "{{ingredient_water}}",
+      "quantity": "recipe_ugali_ingredient_water_quantity"
+    },
+    {
+      "ingredient": "{{ingredient_salt}}",
+      "quantity": "recipe_ugali_ingredient_salt_quantity"
+    }
+  ],
+  "harmfulIngredients": [],
+  "images": [
+    {
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Ugali_%26_Sukuma_Wiki.jpg",
+      "credit": {
+        "attribution": "Paresh Jai from Nairobi, Kenya, via Wikipedia Commons",
+        "source": "https://commons.wikimedia.org/wiki/File:Ugali_%26_Sukuma_Wiki.jpg",
+        "licence": "CC_BY_2.0"
+      }
+    }
+  ],
+  "credit": [
+    {
+      "attribution": "Zurie",
+      "source": "https://www.food.com/recipe/pap-or-sadza-or-ugali-or-345562",
+      "licence": "UNKNOWN"
+    }
+  ]
+}
