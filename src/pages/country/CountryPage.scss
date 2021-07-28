@@ -1,0 +1,13 @@
+@import "../../styles/common.scss";
+
+.recipe-previews {
+  padding-left: 25vw;
+  padding-right: 25vw;
+}
+
+@media screen and (max-width: $medium-screen-max-width) {
+  .recipe-previews {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}

@@ -10,6 +10,9 @@ JSON schema validation
 Execute Typescript script from command-line
 * https://github.com/TypeStrong/ts-node/issues/313#issuecomment-343698812
 
+i18n lazy-loading with namespaces / separate JSON files
+* https://www.i18next.com/principles/namespaces
+
 Pesticide information
 * Route to food
   * White paper
