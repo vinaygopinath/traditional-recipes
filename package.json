@@ -36,8 +36,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "prestart": "yarn generate-validation-schema && yarn validate-schema && yarn generate-recipe-map",
-    "prebuild": "yarn generate-validation-schema && yarn validate-schema",
+    "validate": "yarn generate-validation-schema && yarn validate-schema && yarn generate-recipe-map",
+    "prebuild": "yarn validate",
     "generate-recipe-schema": "typescript-json-validator --useNamedExport src/models/Recipe.ts Recipe && sed -i \"/^export [{]/d\" src/models/Recipe.validator.ts",
     "generate-ingredient-schema": "typescript-json-validator --useNamedExport src/models/Ingredient.ts Ingredient && sed -i \"/^export [{]/d\" src/models/Ingredient.validator.ts",
     "generate-validation-schema": "yarn generate-recipe-schema && yarn generate-ingredient-schema",
