@@ -8,7 +8,7 @@ import { RecipeMap } from "./RecipeMap";
 
 export class RecipeUtils {
 
-  private static INGREDIENT_NAME_REGEX = /{{ingredient_([a-z_]*)}}/
+  private static INGREDIENT_ID_REGEX = /{{ingredient_([a-z_]*)}}/
 
   public static getRecipePreviewsForCountry(country: SupportedCountry): Promise<RecipePreview[]> {
     return Promise.all(
@@ -35,13 +35,13 @@ export class RecipeUtils {
     } as Recipe)
   }
 
-  public static getIngredientNameFromStringOrThrow(ingredientString: string): string {
-    const matches = ingredientString.match(this.INGREDIENT_NAME_REGEX)
+  public static getIngredientIdFromStringOrThrow(ingredientString: string): string {
+    const matches = ingredientString.match(this.INGREDIENT_ID_REGEX)
     if (!matches) {
       throw Error(`Ingredient string ${ingredientString} did not contain any ingredient names`)
     }
 
-    if (matches.length != 2) {
+    if (matches.length !== 2) {
       throw Error(`Unexpected number of ingredient name matches for string ${ingredientString}. Found ${matches.length} matches`)
     }
 
@@ -57,8 +57,8 @@ export class RecipeUtils {
   ): Promise<RecipeIngredient[]> {
     return Promise.all(
       recipePreview.ingredients.map(async ingredientJSON => {
-        const ingredientName = RecipeUtils.getIngredientNameFromStringOrThrow(ingredientJSON.ingredient)
-        const ingredient: Ingredient = await this.getJSONByLocalPath(`/ingredients/${ingredientName}/${ingredientName}.json`)
+        const ingredientId = RecipeUtils.getIngredientIdFromStringOrThrow(ingredientJSON.ingredient)
+        const ingredient: Ingredient = await this.getJSONByLocalPath(`/ingredients/${ingredientId}/${ingredientId}.json`)
         const recipeIngredient: RecipeIngredient = {
           ingredient: ingredient,
           quantity: ingredientJSON.quantity,

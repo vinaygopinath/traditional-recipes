@@ -42,16 +42,16 @@ export class SchemaValidator {
       const { ingredients: recipeIngredients } = recipeJsonData
       recipeJsonData.ingredients = recipeIngredients
         .map((recipeIngredient: { ingredient: string }, index: number) => {
-          const ingredientName = RecipeUtils.getIngredientNameFromStringOrThrow(recipeIngredient.ingredient)
+          const ingredientId = RecipeUtils.getIngredientIdFromStringOrThrow(recipeIngredient.ingredient)
           let ingredient: Ingredient
-          if (ingredientCollection[ingredientName]) {
-            console.log(`Ingredient collection contains ${ingredientName}`)
-            ingredient = ingredientCollection[ingredientName]
+          if (ingredientCollection[ingredientId]) {
+            console.log(`Ingredient collection contains ${ingredientId}`)
+            ingredient = ingredientCollection[ingredientId]
           } else {
-            console.log(`Ingredient collection does not have ${ingredientName}. Fetching`)
-            ingredient = this.getIngredientFromFile(ingredientName)
-            console.log(`Fetched ingredient for ${ingredientName}`, JSON.stringify(ingredient, null, 2))
-            ingredientCollection[ingredientName] = ingredient
+            console.log(`Ingredient collection does not have ${ingredientId}. Fetching`)
+            ingredient = this.getIngredientFromFile(ingredientId)
+            console.log(`Fetched ingredient for ${ingredientId}`, JSON.stringify(ingredient, null, 2))
+            ingredientCollection[ingredientId] = ingredient
           }
 
           return {
@@ -64,14 +64,14 @@ export class SchemaValidator {
     }
   }
 
-  private static getIngredientFromFile(ingredientName: string): Ingredient {
+  private static getIngredientFromFile(ingredientId: string): Ingredient {
     const ingredientFilePath = [
-      `${ingredientName}.json`,
-      `${ingredientName}/${ingredientName}.json`
+      `${ingredientId}.json`,
+      `${ingredientId}/${ingredientId}.json`
     ].find(relativeFilePath => NodeFileUtils.doesFileExist("public/ingredients/", relativeFilePath))
 
     if (!ingredientFilePath) {
-      throw Error(`Could not find a JSON file for the ingredient ${ingredientName}`)
+      throw Error(`Could not find a JSON file for the ingredient ${ingredientId}`)
     }
 
     return NodeFileUtils.getJSONFromFile(`public/ingredients/${ingredientFilePath}`) as Ingredient
