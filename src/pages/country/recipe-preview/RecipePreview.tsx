@@ -3,6 +3,7 @@ import { RecipePreview as RecipePreviewModel } from "../../../models/RecipePrevi
 import { withTranslation, WithTranslation } from "react-i18next"
 import { Card, CardBody, Grid, Image, ResponsiveContext } from "grommet"
 import './RecipePreview.scss'
+import { TextUtils } from "../../../utils/TextUtils"
 
 type RecipePreviewProps = WithTranslation & {
   recipePreview: RecipePreviewModel
@@ -114,9 +115,13 @@ class RecipePreview extends React.PureComponent<RecipePreviewProps, RecipePrevie
     )
   }
 
-  getLocaleStringOrPlaceholder(translationKey: string, args: any = undefined, placeholder: string = "..."): string {
+  getLocaleStringOrPlaceholder(translationKey: string, placeholder: string = "..."): string {
     if (this.state.isTranslationReady) {
-      return this.props.t(`recipe-${this.props.recipePreview.id}:${translationKey}`, args)
+      return TextUtils.getRecipeString(
+        this.props,
+        translationKey,
+        this.props.recipePreview.id
+      )
     } else {
       return placeholder
     }

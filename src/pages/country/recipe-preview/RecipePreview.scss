@@ -8,19 +8,6 @@
     align-self: center;
   }
 
-  .title {
-    font-family: "RobotoSlab";
-    color: $text-title-color;
-  }
-
-  .subtitle {
-    color: $text-subtitle-color;
-  }
-
-  .description {
-    color: $text-body-color;
-  }
-
   @media screen and (max-width: $medium-screen-max-width) {
     .thumbnail {
       margin-left: auto;
