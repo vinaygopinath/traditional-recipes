@@ -6,3 +6,27 @@ $medium-screen-max-width: 767px;
 $large-screen-min-width: 768px;
 $large-screen-max-width: 1151px;
 $xlarge-screen-min-width: 1152px;
+
+.title {
+  font-family: "RobotoSlab";
+  color: $text-title-color;
+}
+
+.subtitle {
+  color: $text-subtitle-color;
+}
+
+.description {
+  color: $text-body-color;
+  line-height: 1.4;
+}
+
+.max-width-90 {
+  max-width: 85%;
+}
+
+@media screen and (max-width: $large-screen-max-width) {
+  .max-width-90 {
+    max-width: none;
+  }
+}

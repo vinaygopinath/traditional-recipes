@@ -1,1 +1,39 @@
 @import "../../styles/common";
+
+.banner {
+  padding-left: 15vw;
+  padding-right: 15vw;
+
+  .image {
+    max-width: 100%;
+    align-self: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .intro {
+    padding-top: 1rem;
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: $large-screen-max-width) {
+  .banner {
+    padding-left: 5vw;
+    padding-right: 5vw;
+
+    .intro {
+      padding-top: none;
+    }
+
+    .image {
+      padding-top: none;
+      padding-bottom: none;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: none;
+      width: 100%;
+    }
+  }
+}
