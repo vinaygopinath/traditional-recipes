@@ -2,6 +2,7 @@ import React from "react"
 import "./App.css"
 import { BrowserRouter, Redirect, Route } from "react-router-dom"
 import CountryPage from "./pages/country/CountryPage"
+import RecipePage from "./pages/recipe/RecipePage"
 import { Box, Grommet } from "grommet"
 import "./i18n"
 import SiteHeader from "./common-components/site-header/SiteHeader"
@@ -30,7 +31,8 @@ function App() {
             <Route exact path="/">
               <Redirect to="/kenya" />
             </Route>
-            <Route path="/:country" component={CountryPage} />
+            <Route path="/:country" component={CountryPage} exact />
+            <Route path="/:country/:recipeId" component={RecipePage} />
           </BrowserRouter>
         </Box>
       </Grommet>

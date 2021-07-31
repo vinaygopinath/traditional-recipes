@@ -8,41 +8,36 @@ import { RootState } from "../../store/RootReducer"
 import { CountryUtils } from "../../utils/CountryUtils"
 import RecipePreviewComponent from "./recipe-preview/RecipePreview"
 import "./CountryPage.scss"
+import { CountryProp } from "../../models/CountryProp"
 
 const mapState = (state: RootState) => ({
   recipePreviews: state.recipe.recipePreviews,
 })
 
 const mapDispatch = {
-  initialiseCountryPage: RecipeActionCreators.initialiseCountryPage,
+  initialiseCountryPage: RecipeActionCreators.initialiseCountryPage
 }
 
 const connector = connect(mapState, mapDispatch)
 
-interface RouterProps {
-  country: string
-}
-
 type CountryPageProps = ConnectedProps<typeof connector> &
-  RouteComponentProps<RouterProps>
+  RouteComponentProps<CountryProp>
 
 class CountryPage extends React.PureComponent<CountryPageProps> {
+
   componentDidMount() {
-    const countryName = this.props.match.params.country
+    const countryName = this.getCountryName()
     if (CountryUtils.isKnownCountry(countryName)) {
       this.props.initialiseCountryPage(countryName)
     }
   }
 
   render() {
-    const countryName = this.props.match.params.country
-    if (CountryUtils.isKnownCountry(countryName)) {
+    if (CountryUtils.isKnownCountryInProp(this.props)) {
       return (
         <div>
-          <h1>{this.props.match.params.country.toLocaleUpperCase()}</h1>
-          {/* <Grid gap="medium" columns={{ count: 1, size: '40%' }} style={{paddingLeft: '20%', paddingRight: '30%'}}> */}
+          <h1>{CountryUtils.getCountryNameFromProp(this.props).toLocaleUpperCase()}</h1>
             {this.showRecipePreviews()}
-          {/* </Grid> */}
         </div>
       )
     } else {
@@ -60,6 +55,18 @@ class CountryPage extends React.PureComponent<CountryPageProps> {
     }
   }
 
+  getCountryName(): string {
+    return CountryUtils.getCountryNameFromProp(this.props)
+  }
+
+  onRecipePreviewClick(recipePreview: RecipePreview | undefined) {
+    if (!recipePreview) {
+      return
+    }
+
+    this.props.history.push(`${this.getCountryName()}/${recipePreview.id}`)
+  }
+
   showRecipePreviews() {
     if (this.props.recipePreviews.length > 0) {
       // TODO (dev only): Creating multiple elements to visualize a longer list
@@ -70,9 +77,10 @@ class CountryPage extends React.PureComponent<CountryPageProps> {
           {(size) => (
             <Box className="recipe-previews">
             <List
+            onClickItem={(event: { item?: RecipePreview; index?: number }) => this.onRecipePreviewClick(event.item)}
             pad={{vertical: this.getListVerticalPaddingForScreenSize(size)}}
             data={recipePreviews}
-            primaryKey="internalName"
+            primaryKey="id"
             children={(item: RecipePreview, index: number) => <RecipePreviewComponent recipePreview={item} />}
             />
             </Box>
