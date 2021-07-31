@@ -21,7 +21,7 @@ class RecipePreview extends React.PureComponent<RecipePreviewProps, RecipePrevie
   namespacePromise: Promise<void> | null = null
 
   componentDidMount() {
-    this.props.i18n.loadNamespaces(`recipe-${this.props.recipePreview.internalName}`, () => {
+    this.props.i18n.loadNamespaces(`recipe-${this.props.recipePreview.id}`, () => {
       this.setState({
         isTranslationReady: true
       })
@@ -116,7 +116,7 @@ class RecipePreview extends React.PureComponent<RecipePreviewProps, RecipePrevie
 
   getLocaleStringOrPlaceholder(translationKey: string, args: any = undefined, placeholder: string = "..."): string {
     if (this.state.isTranslationReady) {
-      return this.props.t(`recipe-${this.props.recipePreview.internalName}:${translationKey}`, args)
+      return this.props.t(`recipe-${this.props.recipePreview.id}:${translationKey}`, args)
     } else {
       return placeholder
     }
