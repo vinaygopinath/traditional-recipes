@@ -5,5 +5,10 @@ export interface RecipePreview {
   title: string,
   subtitle: string | null,
   images: Image[],
+  ingredients: [{
+    ingredient: string,
+    quantity: string,
+    note?: string
+  }],
   description: string
 }

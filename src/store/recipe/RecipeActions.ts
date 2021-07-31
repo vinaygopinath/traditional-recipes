@@ -1,3 +1,4 @@
+import { Recipe } from "../../models/Recipe";
 import { RecipePreview } from "../../models/RecipePreview";
 import { SupportedCountry } from "../../models/SupportedCountry";
 import { RecipeActionType } from "./RecipeActionType";
@@ -12,4 +13,17 @@ export interface SetRecipePreviewsAction {
   payload: RecipePreview[]
 }
 
-export type RecipeActions = InitialiseCountryPageAction | SetRecipePreviewsAction
+export interface LoadRecipeAction {
+  type: RecipeActionType.LOAD_RECIPE,
+  payload: {
+    recipeId: string,
+    country: SupportedCountry
+  }
+}
+
+export interface SetRecipeAction {
+  type: RecipeActionType.SET_RECIPE,
+  payload: Recipe
+}
+
+export type RecipeActions = InitialiseCountryPageAction | SetRecipePreviewsAction | LoadRecipeAction | SetRecipeAction

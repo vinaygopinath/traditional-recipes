@@ -3,9 +3,8 @@ import validateRecipe from "../../models/Recipe.validator"
 import validateIngredient from "../../models/Ingredient.validator"
 import { Ingredient } from "../../models/Ingredient"
 import { NodeFileUtils } from "./NodeFileUtils"
+import { RecipeUtils } from "../RecipeUtils"
 export class SchemaValidator {
-
-  private static INGREDIENT_NAME_REGEX = /{{ingredient_([a-z_]*)}}/
 
   public static validateIngredients(ingredientFolder: string = "public/ingredients/") {
     NodeFileUtils.getAllJSONFilesInFolder(ingredientFolder)
@@ -43,7 +42,7 @@ export class SchemaValidator {
       const { ingredients: recipeIngredients } = recipeJsonData
       recipeJsonData.ingredients = recipeIngredients
         .map((recipeIngredient: { ingredient: string }, index: number) => {
-          const ingredientName = this.getIngredientNameFromStringOrThrow(recipeIngredient.ingredient)
+          const ingredientName = RecipeUtils.getIngredientNameFromStringOrThrow(recipeIngredient.ingredient)
           let ingredient: Ingredient
           if (ingredientCollection[ingredientName]) {
             console.log(`Ingredient collection contains ${ingredientName}`)
@@ -76,18 +75,5 @@ export class SchemaValidator {
     }
 
     return NodeFileUtils.getJSONFromFile(`public/ingredients/${ingredientFilePath}`) as Ingredient
-  }
-
-  private static getIngredientNameFromStringOrThrow(ingredientString: string): string {
-    const matches = ingredientString.match(this.INGREDIENT_NAME_REGEX)
-    if (!matches) {
-      throw Error(`Ingredient string ${ingredientString} did not contain any ingredient names`)
-    }
-
-    if (matches.length != 2) {
-      throw Error(`Unexpected number of ingredient name matches for string ${ingredientString}. Found ${matches.length} matches`)
-    }
-
-    return matches[1]
   }
 }
