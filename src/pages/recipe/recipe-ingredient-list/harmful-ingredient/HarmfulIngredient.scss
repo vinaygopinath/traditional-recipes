@@ -1,0 +1,14 @@
+@import "../../../../styles/common";
+
+.ingredient-title {
+  font-weight: bold;
+  color: $brand-status-error-color;
+}
+
+.ingredient-image-container {
+  align-items: center;
+}
+
+.ingredient-barb {
+  color: $text-subtitle-color;
+}

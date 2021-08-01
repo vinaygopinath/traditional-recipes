@@ -7,8 +7,11 @@ $large-screen-min-width: 768px;
 $large-screen-max-width: 1151px;
 $xlarge-screen-min-width: 1152px;
 
+$font-title: "RobotoSlab";
+$font-body: "Inter";
+
 .title {
-  font-family: "RobotoSlab";
+  font-family: $font-title;
   color: $text-title-color;
 }
 

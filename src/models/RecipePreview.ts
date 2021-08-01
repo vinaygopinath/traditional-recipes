@@ -10,5 +10,6 @@ export interface RecipePreview {
     quantity: string,
     note?: string
   }],
+  harmfulIngredients: string[],
   description: string
 }
