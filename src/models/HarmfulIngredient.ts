@@ -1,6 +1,8 @@
 import { Ingredient } from "./Ingredient";
+import { KnownEffect } from "./KnownEffect";
 
 export interface HarmfulIngredient extends Ingredient {
-  knownEffects: string[],
+  isBannedInEU: boolean,
+  knownEffects: KnownEffect[],
   barbs: string[]
 }
