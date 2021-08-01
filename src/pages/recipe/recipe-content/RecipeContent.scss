@@ -1,0 +1,14 @@
+@import "../../../styles/common";
+
+.content {
+  padding-top: 1rem;
+  padding-left: 15vw;
+  padding-right: 15vw;
+}
+
+@media screen and (max-width: $large-screen-max-width) {
+  .content {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
