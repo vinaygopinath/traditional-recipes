@@ -1,7 +1,8 @@
 {
+  "id": "salt",
   "name": "ingredient_salt_name",
   "image": {
-    "url": "ingredients/salt/salt.jpg",
+    "url": "/ingredients/salt/salt.jpg",
     "credit": {
       "source": "https://pixabay.com/photos/salt-salt-shaker-spices-kitchen-4160306/",
       "attribution": "KatineArt",
