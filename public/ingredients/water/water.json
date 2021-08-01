@@ -2,7 +2,7 @@
   "id": "water",
   "name": "ingredient_water_name",
   "image": {
-    "url": "ingredients/water/water.jpg",
+    "url": "/ingredients/water/water.jpg",
     "credit": {
       "source": "https://unsplash.com/photos/zFEY4DP4h6c",
       "attribution": "manu schwendener",

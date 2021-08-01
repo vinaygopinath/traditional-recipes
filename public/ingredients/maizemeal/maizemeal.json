@@ -2,7 +2,7 @@
   "id": "maizemeal",
   "name": "ingredient_maizemeal_name",
   "image": {
-    "url": "ingredients/maizemeal/maizemeal.jpg",
+    "url": "/ingredients/maizemeal/maizemeal.jpg",
     "credit": {
       "source": "https://foto.wuestenigel.com/close-up-glass-bowl-with-corn-flour/",
       "attribution": "Marco Verch",
