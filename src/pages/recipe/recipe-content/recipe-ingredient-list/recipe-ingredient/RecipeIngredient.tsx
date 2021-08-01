@@ -1,9 +1,9 @@
 import { Box, Grid } from "grommet";
 import React from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
-import IngredientIcon from "../../../../common-components/ingredient-icon/IngredientIcon";
-import { RecipeIngredient as RecipeIngredientModel } from "../../../../models/RecipeIngredient";
-import { TextUtils } from "../../../../utils/TextUtils";
+import IngredientIcon from "../../../../../common-components/ingredient-icon/IngredientIcon";
+import { RecipeIngredient as RecipeIngredientModel } from "../../../../../models/RecipeIngredient";
+import { TextUtils } from "../../../../../utils/TextUtils";
 import "./RecipeIngredient.scss";
 
 type RecipeIngredientProps = {
@@ -38,7 +38,7 @@ class RecipeIngredient extends React.PureComponent<RecipeIngredientProps> {
           <IngredientIcon url={ingredient.image.url} />
         </Box>
         <Box alignContent="start" alignSelf="center">
-          <div>{this.getIngredientDetails()}</div>
+          <div className="ingredient-detail">{this.getIngredientDetails()}</div>
         </Box>
       </Grid>
     )

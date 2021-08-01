@@ -18,7 +18,7 @@ class Step extends React.PureComponent<StepProps> {
     return (
       <Box className="step">
         <h4 className="title">{`${this.getLocaleString('recipe_page_step')} ${this.props.number}`}</h4>
-        <span className="max-width-90">{this.props.step}</span>
+        <span className="text max-width-90">{this.props.step}</span>
       </Box>
     )
   }

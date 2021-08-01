@@ -1,7 +1,7 @@
 import { Box } from "grommet"
 import React from "react"
 import { withTranslation, WithTranslation } from "react-i18next"
-import { Recipe } from "../../../models/Recipe"
+import { Recipe } from "../../../../models/Recipe"
 import HarmfulIngredient from "./harmful-ingredient/HarmfulIngredient"
 import RecipeIngredient from "./recipe-ingredient/RecipeIngredient"
 import "./RecipeIngredientList.scss"

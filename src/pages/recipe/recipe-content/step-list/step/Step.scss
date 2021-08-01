@@ -1,9 +1,13 @@
-@import "../../../../styles/common";
+@import "/src/styles/common";
 
 .step {
   padding-bottom: 1rem;
   .title {
     text-transform: uppercase;
     margin-bottom: 1rem;
+  }
+
+  .text {
+    color: $text-body-color;
   }
 }

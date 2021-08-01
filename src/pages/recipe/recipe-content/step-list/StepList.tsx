@@ -1,5 +1,5 @@
 import React from "react"
-import { Recipe } from "../../../models/Recipe"
+import { Recipe } from "../../../../models/Recipe"
 import Step from "./step/Step"
 
 type StepListProps = {

@@ -1,8 +1,8 @@
 import { Box, Grid } from "grommet"
 import React from "react"
 import { Recipe } from "../../../models/Recipe"
-import RecipeIngredientList from "../recipe-ingredient-list/RecipeIngredientList"
-import StepList from "../step-list/StepList"
+import RecipeIngredientList from "./recipe-ingredient-list/RecipeIngredientList"
+import StepList from "./step-list/StepList"
 import "./RecipeContent.scss"
 
 type RecipeContentProps = {

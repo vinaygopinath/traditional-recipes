@@ -1,11 +1,11 @@
 import React from "react"
 import { Box, Grid } from "grommet";
-import { HarmfulIngredient as HarmfulIngredientModel } from "../../../../models/HarmfulIngredient"
-import { TextUtils } from "../../../../utils/TextUtils";
+import { HarmfulIngredient as HarmfulIngredientModel } from "../../../../../models/HarmfulIngredient"
+import { TextUtils } from "../../../../../utils/TextUtils";
 import { withTranslation, WithTranslation } from "react-i18next";
-import { RandomUtils } from "../../../../utils/RandomUtils";
+import { RandomUtils } from "../../../../../utils/RandomUtils";
 import "./HarmfulIngredient.scss";
-import IngredientIcon from "../../../../common-components/ingredient-icon/IngredientIcon";
+import IngredientIcon from "../../../../../common-components/ingredient-icon/IngredientIcon";
 
 type HarmfulIngredientProps = {
   harmfulIngredient: HarmfulIngredientModel,
