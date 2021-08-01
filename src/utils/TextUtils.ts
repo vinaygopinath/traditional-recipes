@@ -25,12 +25,21 @@ export class TextUtils {
 
   public static getIngredientString(
     props: WithTranslation,
-    translationKey: string,
-    ingredientId: string
+    translationKey: string
   ): string {
     return this.getString(
       props,
-      `ingredient-${ingredientId}:${translationKey}`
+      `ingredients:${translationKey}`
+    )
+  }
+
+  public static getHarmfulIngredientString(
+    props: WithTranslation,
+    translationKey: string
+  ): string {
+    return this.getString(
+      props,
+      `harmful-ingredients:${translationKey}`
     )
   }
 
