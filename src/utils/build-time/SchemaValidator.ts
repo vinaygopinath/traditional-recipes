@@ -4,6 +4,7 @@ import validateIngredient from "../../models/Ingredient.validator"
 import { Ingredient } from "../../models/Ingredient"
 import { NodeFileUtils } from "./NodeFileUtils"
 import { RecipeUtils } from "../RecipeUtils"
+import { HarmfulIngredient } from "../../models/HarmfulIngredient"
 export class SchemaValidator {
 
   public static validateIngredients(ingredientFolder: string = "public/ingredients/") {
@@ -16,12 +17,14 @@ export class SchemaValidator {
 
   public static validateRecipes(recipeFolder: string = "public/recipes/") {
     const ingredientCollection: { [key: string]: Ingredient, } = {}
+    const harmfulIngredientCollection: { [key: string]: HarmfulIngredient } = {}
     NodeFileUtils.getAllJSONFilesInFolder(recipeFolder)
       // Not using map + forEach here to avoid loading all files
       // into memory at once, potentially causing a memory issue
       .forEach(filePath => {
         const jsonData = NodeFileUtils.getJSONFromFile(filePath)
         this.expandIngredients(jsonData, ingredientCollection)
+        this.expandHarmfulIngredients(jsonData, harmfulIngredientCollection)
 
         validateRecipe(jsonData)
       })
@@ -45,10 +48,8 @@ export class SchemaValidator {
           const ingredientId = RecipeUtils.getIngredientIdFromStringOrThrow(recipeIngredient.ingredient)
           let ingredient: Ingredient
           if (ingredientCollection[ingredientId]) {
-            console.log(`Ingredient collection contains ${ingredientId}`)
             ingredient = ingredientCollection[ingredientId]
           } else {
-            console.log(`Ingredient collection does not have ${ingredientId}. Fetching`)
             ingredient = this.getIngredientFromFile(ingredientId)
             console.log(`Fetched ingredient for ${ingredientId}`, JSON.stringify(ingredient, null, 2))
             ingredientCollection[ingredientId] = ingredient
@@ -75,5 +76,45 @@ export class SchemaValidator {
     }
 
     return NodeFileUtils.getJSONFromFile(`public/ingredients/${ingredientFilePath}`) as Ingredient
+  }
+
+  private static expandHarmfulIngredients(
+    recipeJsonData: any,
+    harmfulIngredientCollection: { [key: string]: HarmfulIngredient }
+  ) {
+    if (
+      recipeJsonData
+      && recipeJsonData.harmfulIngredients
+      && Array.isArray(recipeJsonData.harmfulIngredients)
+    ) {
+      const { harmfulIngredients } = recipeJsonData
+      recipeJsonData.harmfulIngredients = recipeJsonData.harmfulIngredients
+        .map((harmfulIngredientString: string, index: number) => {
+          const harmfulIngredientId = RecipeUtils.getHarmfulIngredientIdFromStringOrThrow(harmfulIngredientString)
+          let harmfulIngredient: HarmfulIngredient
+          if (harmfulIngredientCollection[harmfulIngredientId]) {
+            harmfulIngredient = harmfulIngredientCollection[harmfulIngredientId]
+          } else {
+            harmfulIngredient = this.getHarmfulIngredientFromFile(harmfulIngredientId)
+            harmfulIngredientCollection[harmfulIngredientId] = harmfulIngredient
+          }
+
+          return harmfulIngredient
+        })
+    } else {
+      throw Error(`Received unexpected recipe JSON. JSON is empty or missing "harmfulIngredients"`)
+    }
+  }
+
+  private static getHarmfulIngredientFromFile(harmfulIngredientId: string): HarmfulIngredient {
+    const harmfulIngredientFilePath = [
+      `${harmfulIngredientId}/${harmfulIngredientId}.json`
+    ].find(relativeFilePath => NodeFileUtils.doesFileExist("public/harmful-ingredients/", relativeFilePath))
+
+    if (!harmfulIngredientFilePath) {
+      throw Error(`Could not find a JSON file for the harmful ingredient ${harmfulIngredientId}`)
+    }
+
+    return NodeFileUtils.getJSONFromFile(`public/harmful-ingredients/${harmfulIngredientFilePath}`) as HarmfulIngredient
   }
 }

@@ -1,4 +1,5 @@
 import axios from "axios"
+import { HarmfulIngredient } from "../models/HarmfulIngredient";
 import { Ingredient } from "../models/Ingredient";
 import { Recipe } from "../models/Recipe";
 import { RecipeIngredient } from "../models/RecipeIngredient";
@@ -9,6 +10,7 @@ import { RecipeMap } from "./RecipeMap";
 export class RecipeUtils {
 
   private static INGREDIENT_ID_REGEX = /{{ingredient_([a-z_]*)}}/
+  private static HARMFUL_INGREDIENT_ID_REGEX = /{{harmful_ingredient_([a-z_]*)}}/
 
   public static getRecipePreviewsForCountry(country: SupportedCountry): Promise<RecipePreview[]> {
     return Promise.all(
@@ -28,10 +30,12 @@ export class RecipeUtils {
       `/recipes/${country}/${recipeId}/${recipeId}.json`
     )
     const recipeIngredients = await this.fetchIngredients(recipePreview)
+    const harmfulIngredients = await this.fetchHarmfulIngredients(recipePreview)
 
     return Promise.resolve({
       ...recipePreview,
-      ingredients: recipeIngredients
+      ingredients: recipeIngredients,
+      harmfulIngredients: harmfulIngredients
     } as Recipe)
   }
 
@@ -67,6 +71,32 @@ export class RecipeUtils {
         return Promise.resolve(recipeIngredient)
       })
     )
+  }
+
+  private static async fetchHarmfulIngredients(
+    recipePreview: RecipePreview,
+  ): Promise<HarmfulIngredient[]> {
+    return Promise.all(
+      recipePreview.harmfulIngredients.map(async harmfulIngredientString => {
+        const harmfulIngredientId = RecipeUtils.getHarmfulIngredientIdFromStringOrThrow(harmfulIngredientString)
+        const harmfulIngredient = await this.getJSONByLocalPath(`/harmful-ingredients/${harmfulIngredientId}/${harmfulIngredientId}.json`)
+
+        return Promise.resolve(harmfulIngredient)
+      })
+    )
+  }
+
+  public static getHarmfulIngredientIdFromStringOrThrow(harmfulIngredientString: string): string {
+    const matches = harmfulIngredientString.match(this.HARMFUL_INGREDIENT_ID_REGEX)
+    if (!matches) {
+      throw Error(`Harmful ingredient string ${harmfulIngredientString} did not contain any ingredient names`)
+    }
+
+    if (matches.length !== 2) {
+      throw Error(`Unexpected number of harmful ingredient name matches for string ${harmfulIngredientString}. Found ${matches.length} matches`)
+    }
+
+    return matches[1]
   }
 
   private static async getJSONByLocalPath(filePath: string): Promise<any> {
