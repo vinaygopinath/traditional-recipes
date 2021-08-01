@@ -1,0 +1,9 @@
+@import "../../../styles/common";
+
+.special-ingredient-title {
+  padding-left: 2.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-family: $font-title;
+  color: $brand-neutral-4-color;
+}
