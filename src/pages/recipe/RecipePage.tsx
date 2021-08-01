@@ -1,4 +1,4 @@
-import { Box, ResponsiveContext } from "grommet"
+import { ResponsiveContext } from "grommet"
 import React from "react"
 import { withTranslation, WithTranslation } from "react-i18next"
 import { connect, ConnectedProps } from "react-redux"
@@ -11,6 +11,7 @@ import { CountryUtils } from "../../utils/CountryUtils"
 import { RecipeUtils } from "../../utils/RecipeUtils"
 import { TextUtils } from "../../utils/TextUtils"
 import RecipeBanner from "./recipe-banner/RecipeBanner"
+import RecipeContent from "./recipe-content/RecipeContent"
 
 const mapState = (state: RootState) => ({
   recipe: state.recipe.recipe,
@@ -33,7 +34,7 @@ type RecipeState = {
 
 class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
   state: RecipeState = {
-    isTranslationReady: false
+    isTranslationReady: false,
   }
 
   componentDidMount() {
@@ -55,12 +56,7 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
 
   loadTranslationStrings() {
     const recipe = this.props.recipe as Recipe
-    const ingredientFileNames = recipe.ingredients
-      .map((ingredient) => ingredient.ingredient.id)
-      .map((ingredientId) => `ingredient-${ingredientId}`)
-
-    const filenames = [`recipe-${recipe.id}`, ...ingredientFileNames]
-    this.props.i18n.loadNamespaces(filenames, () => {
+    this.props.i18n.loadNamespaces(`recipe-${recipe.id}`, () => {
       this.setState({
         isTranslationReady: true,
       })
@@ -75,6 +71,10 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
     )
   }
 
+  getIngredientString(translationKey: string): string {
+    return TextUtils.getIngredientString(this.props, translationKey)
+  }
+
   render() {
     const recipe = this.props.recipe
     if (!recipe || !this.state.isTranslationReady) {
@@ -84,20 +84,20 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
     return (
       <ResponsiveContext.Consumer>
         {(size) => (
-          <Box>
-            <RecipeBanner size={size} recipe={recipe} getRecipeString={translationKey => this.getRecipeString(translationKey)} />
-            <div>Recipe title: {this.getRecipeString(recipe.title)}</div>
-            <div>
-              Recipe ingredients:{" "}
-              {recipe.ingredients
-                .map((ingredient) => ingredient.ingredient.name)
-                .join(", ")}
-            </div>
-          </Box>
+          <main>
+            <RecipeBanner
+              size={size}
+              recipe={recipe}
+              getRecipeString={(translationKey) =>
+                this.getRecipeString(translationKey)
+              }
+            />
+            <RecipeContent recipe={recipe} size={size}/>
+          </main>
         )}
       </ResponsiveContext.Consumer>
     )
   }
 }
 
-export default connector(withTranslation()(RecipePage))
+export default connector(withTranslation(["ingredients", "harmful-ingredients", "recipe-page"])(RecipePage))

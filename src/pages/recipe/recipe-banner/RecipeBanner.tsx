@@ -2,6 +2,7 @@ import { Box, Grid, Image } from "grommet"
 import React from "react"
 import { Recipe } from "../../../models/Recipe"
 import Separator from "../../../common-components/separator/Separator"
+import "./RecipeBanner.scss"
 
 type RecipeBannerProps = {
   recipe: Recipe
@@ -84,29 +85,29 @@ export default class RecipeBanner extends React.PureComponent<RecipeBannerProps>
   render() {
     const recipe = this.props.recipe
     return (
-      <Box className="banner" background="light-2">
-        <Grid
-          columns={this.getBannerColumnsForSize()}
-          rows={this.getBannerRowsForSize()}
-          areas={this.getBannerAreasForSize()}
-          gap={this.getBannerAreaGapBySize()}
-        >
-          <Box gridArea="intro" className="intro">
-            <h1 className="title">{this.getRecipeString(recipe.title)}</h1>
-            <span className="subtitle">{this.getSubtitle(recipe)}</span>
-            <Separator pad="medium" />
-            <p className="description max-width-90">
-              {this.getRecipeString(recipe.description)}
-            </p>
-          </Box>
-          <Image
-            gridArea="image"
-            className="image"
-            src={recipe.images[0].url}
-            fit="cover"
-          />
-        </Grid>
-      </Box>
+        <Box className="banner" background="light-2">
+          <Grid
+            columns={this.getBannerColumnsForSize()}
+            rows={this.getBannerRowsForSize()}
+            areas={this.getBannerAreasForSize()}
+            gap={this.getBannerAreaGapBySize()}
+          >
+            <Box gridArea="intro" className="intro">
+              <h1 className="title">{this.getRecipeString(recipe.title)}</h1>
+              <span className="subtitle">{this.getSubtitle(recipe)}</span>
+              <Separator pad="medium" />
+              <p className="description max-width-90">
+                {this.getRecipeString(recipe.description)}
+              </p>
+            </Box>
+            <Image
+              gridArea="image"
+              className="image"
+              src={recipe.images[0].url}
+              fit="cover"
+            />
+          </Grid>
+        </Box>
     )
   }
 }
