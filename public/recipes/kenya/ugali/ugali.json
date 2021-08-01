@@ -23,7 +23,9 @@
       "quantity": "recipe_ugali_ingredient_salt_quantity"
     }
   ],
-  "harmfulIngredients": [],
+  "harmfulIngredients": [
+    "{{harmful_ingredient_permethrin}}"
+  ],
   "images": [
     {
       "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Ugali_%26_Sukuma_Wiki.jpg",

@@ -1,0 +1,17 @@
+{
+  "id": "permethrin",
+  "name": "harmful_ingredient_permethrin_name",
+  "isBannedInEU": true,
+  "knownEffects": [],
+  "image": {
+    "url": "/harmful-ingredients/images/blood/blood.svg",
+    "credit": {
+      "attribution": "blood by mambu from the Noun Project",
+      "source": "https://thenounproject.com/search/?i=2427391",
+      "licence": "CC_BY_3.0"
+    }
+  },
+  "barbs": [
+    "harmful_ingredient_permethrin_barb1"
+  ]
+}
