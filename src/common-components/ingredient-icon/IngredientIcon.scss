@@ -1,0 +1,9 @@
+.ingredient-icon {
+  width: 3vw;
+}
+
+@media screen and (max-width: $large-screen-max-width) {
+  .ingredient-icon {
+    width: 8vw;
+  }
+}
