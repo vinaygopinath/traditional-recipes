@@ -3,6 +3,12 @@
   "title": "recipe_ugali_title",
   "subtitle": "recipe_ugali_subtitle",
   "description": "recipe_ugali_description",
+  "steps": [
+    "Heat water to boiling in a saucepan. Slowly pour the maizemeal (cornflour) into boiling water. Avoid forming lumps",
+    "Stir continuously and mash any lumps that do form. Add more corn flour until it is thicker than mashed potatoes.",
+    "Cook for three or four minutes, continue to stir. (Continuing to stir as the ugali thickens is the secret to success, i.e., lump-free ugali.)",
+    "Serve immediately with any meat or vegetable stew, or any dish with a sauce or gravy."
+  ],
   "ingredients": [
     {
       "ingredient": "{{ingredient_maizemeal}}",

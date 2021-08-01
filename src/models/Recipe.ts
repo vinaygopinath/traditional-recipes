@@ -9,6 +9,7 @@ export interface Recipe {
   subtitle: string | null,
   images: Image[],
   description: string,
+  steps: string[],
   ingredients: RecipeIngredient[],
   harmfulIngredients: HarmfulIngredient[],
   credit: Credit[]
