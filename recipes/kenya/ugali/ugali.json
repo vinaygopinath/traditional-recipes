@@ -23,6 +23,7 @@
       "quantity": "recipe_ugali_ingredient_salt_quantity"
     }
   ],
+  "harmIntro": "recipe_ugali_harm_intro",
   "harmfulIngredients": [
     "{{harmful_ingredient_permethrin}}"
   ],

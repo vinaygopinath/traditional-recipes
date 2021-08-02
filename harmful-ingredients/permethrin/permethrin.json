@@ -1,8 +1,47 @@
 {
   "id": "permethrin",
   "name": "harmful_ingredient_permethrin_name",
+  "description": "harmful_ingredient_permethrin_description",
   "isBannedInEU": true,
-  "knownEffects": [],
+  "knownEffects": [
+    {
+      "name": "harmful_ingredient_permethrin_effect_lung_tumour",
+      "description": "harmful_ingredient_permethrin_effect_lung_tumour_description",
+      "citations": [
+        {
+          "authors": "Hakoi et al., 1992"
+        },
+        {
+          "authors": "Wang et al., 2017"
+        }
+      ]
+    },
+    {
+      "name": "harmful_ingredient_permethrin_effect_prostate_cancer",
+      "description": "harmful_ingredient_permethrin_effect_prostate_cancer_description",
+      "citations": [
+        {
+          "authors": "Barry, 2012",
+          "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3271261/"
+        }
+      ]
+    },
+    {
+      "name": "harmful_ingredient_permethrin_effect_neurotoxicity",
+      "description": "harmful_ingredient_permethrin_effect_neurotoxicity_description",
+      "citations": [
+        {
+          "authors": "Staatz et al., 1982"
+        },
+        {
+          "authors": "Kakko et al., 2003"
+        },
+        {
+          "authors": "Drago et al., 2014"
+        }
+      ]
+    }
+  ],
   "image": {
     "url": "/harmful-ingredients/images/blood/blood.svg",
     "credit": {
@@ -12,6 +51,7 @@
     }
   },
   "barbs": [
-    "harmful_ingredient_permethrin_barb1"
+    "harmful_ingredient_permethrin_barb1",
+    "harmful_ingredient_permethrin_barb2"
   ]
 }

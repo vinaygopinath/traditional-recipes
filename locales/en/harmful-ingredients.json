@@ -1,4 +1,17 @@
 {
+  "harmful_ingredient_effect_carcinogenicity": "Carcinogenicity",
+
   "harmful_ingredient_permethrin_name": "Permethrin",
-  "harmful_ingredient_permethrin_barb1": "Spice up your dish with a pinch of leukaemia!"
+  "harmful_ingredient_permethrin_description": "Permethrin is an active ingredient in more than six pesticide products approved for sale in Kenya to control termites and stalk borer in maize. As a dust, it is applied to stored maize and grains to control grain borer. Farmers apply it directly to stored grains in a bag",
+  "harmful_ingredient_permethrin_barb1": "Spice up your dish with a pinch of leukaemia!",
+  "harmful_ingredient_permethrin_barb2": "A cancerous twist to a classic recipe",
+
+  "harmful_ingredient_permethrin_effect_lung_tumour": "Lung tumours",
+  "harmful_ingredient_permethrin_effect_lung_tumour_description": "The U.S. Environmental Protection Agency has classified permethrin as a carcinogen because it causes lung tumours in female mice and liver tumours in mice of both sexes",
+
+  "harmful_ingredient_permethrin_effect_prostate_cancer": "Prostate cancer",
+  "harmful_ingredient_permethrin_effect_prostate_cancer_description": "Permethrin can be related to prostate cancer",
+
+  "harmful_ingredient_permethrin_effect_neurotoxicity": "Neurological effects",
+  "harmful_ingredient_permethrin_effect_neurotoxicity_description": "Permethrin is a neurotoxin whose effects include tremors, incoordination, elevated body temperature, increased aggressive behaviour, and disruption of learning"
 }
