@@ -1,6 +1,8 @@
 {
   "harmful_ingredient_eu_not_approved_title": "Fun fact 🤔",
-  "harmful_ingredient_eu_not_approved_message": "Products containing {{harmfulIngredientName}} are not approved for agricultural use in the European Union (EU)",
+  "harmful_ingredient_eu_not_approved_message": "Products containing {{harmfulIngredientName}} are not approved for agricultural use in the European Union (EU), but it has no problems selling them to others!",
+
+  "harmful_ingredient_effects_heading": "Reasons to love {{harmfulIngredientName}}",
 
   "harmful_ingredient_permethrin_name": "Permethrin",
   "harmful_ingredient_permethrin_description": "Permethrin is an active ingredient in more than six pesticide products approved for sale in Kenya to control termites and stalk borer in maize. As a dust, it is applied to stored maize and grains to control grain borer. Farmers apply it directly to stored grains in a bag",
