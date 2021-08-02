@@ -5,6 +5,15 @@
   "isBannedInEU": true,
   "knownEffects": [
     {
+      "name": "harmful_ingredient_permethrin_effect_leukaemia",
+      "description": "harmful_ingredient_permethrin_effect_leukaemia_description",
+      "citations": [
+        {
+          "authors": "Navarrete-Meneses et al., 2017"
+        }
+      ]
+    },
+    {
       "name": "harmful_ingredient_permethrin_effect_lung_tumour",
       "description": "harmful_ingredient_permethrin_effect_lung_tumour_description",
       "citations": [
