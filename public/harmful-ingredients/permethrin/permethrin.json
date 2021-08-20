@@ -1,6 +1,7 @@
 {
   "id": "permethrin",
   "name": "harmful_ingredient_permethrin_name",
+  "description": "harmful_ingredient_permethrin_description",
   "isBannedInEU": true,
   "knownEffects": [
     {
