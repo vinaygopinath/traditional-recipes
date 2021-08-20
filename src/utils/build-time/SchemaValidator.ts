@@ -25,6 +25,7 @@ export class SchemaValidator {
         const jsonData = NodeFileUtils.getJSONFromFile(filePath)
         this.expandIngredients(jsonData, ingredientCollection)
         this.expandHarmfulIngredients(jsonData, harmfulIngredientCollection)
+        this.expandIngredientsWithHarmfulLinks(jsonData)
 
         validateRecipe(jsonData)
       })
@@ -87,7 +88,6 @@ export class SchemaValidator {
       && recipeJsonData.harmfulIngredients
       && Array.isArray(recipeJsonData.harmfulIngredients)
     ) {
-      const { harmfulIngredients } = recipeJsonData
       recipeJsonData.harmfulIngredients = recipeJsonData.harmfulIngredients
         .map((harmfulIngredientString: string, index: number) => {
           const harmfulIngredientId = RecipeUtils.getHarmfulIngredientIdFromStringOrThrow(harmfulIngredientString)
@@ -103,6 +103,25 @@ export class SchemaValidator {
         })
     } else {
       throw Error(`Received unexpected recipe JSON. JSON is empty or missing "harmfulIngredients"`)
+    }
+  }
+
+  private static expandIngredientsWithHarmfulLinks(recipeJsonData: any) {
+    if (
+      recipeJsonData
+      && recipeJsonData.ingredientsWithHarmfulLink
+      && Array.isArray(recipeJsonData.ingredientsWithHarmfulLink)
+    ) {
+      recipeJsonData.ingredientsWithHarmfulLink = recipeJsonData.ingredientsWithHarmfulLink
+        .map((ingredientWithHarmfulLink: { ingredient: string }, index: number) => {
+          const ingredientId = RecipeUtils.getIngredientIdFromStringOrThrow(ingredientWithHarmfulLink.ingredient)
+          return {
+            ...ingredientWithHarmfulLink,
+            ingredient: this.getIngredientFromFile(ingredientId)
+          }
+        })
+    } else {
+      throw Error(`Received unexpected recipe JSON. JSON is empty or missing "ingredientsWithHarmfulLink"`)
     }
   }
 

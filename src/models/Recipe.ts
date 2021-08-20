@@ -2,6 +2,7 @@ import { Credit } from "./Credit";
 import { HarmfulIngredient } from "./HarmfulIngredient";
 import { Image } from "./Image";
 import { RecipeIngredient } from "./RecipeIngredient";
+import { RecipeIngredientWithHarmfulLink } from "./RecipeIngredientWithHarmfulLink";
 
 export interface Recipe {
   id: string,
@@ -11,6 +12,7 @@ export interface Recipe {
   description: string,
   steps: string[],
   ingredients: RecipeIngredient[],
+  ingredientsWithHarmfulLink: RecipeIngredientWithHarmfulLink[],
   harmfulIngredients: HarmfulIngredient[],
   credit: Credit[]
 }

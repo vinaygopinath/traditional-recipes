@@ -9,11 +9,14 @@
     "Cook for three or four minutes, continue to stir. (Continuing to stir as the ugali thickens is the secret to success, i.e., lump-free ugali.)",
     "Serve immediately with any meat or vegetable stew, or any dish with a sauce or gravy."
   ],
-  "ingredients": [
+  "ingredientsWithHarmfulLink": [
     {
       "ingredient": "{{ingredient_maizemeal}}",
-      "quantity": "recipe_ugali_ingredient_maizemeal_quantity"
-    },
+      "quantity": "recipe_ugali_ingredient_maizemeal_quantity",
+      "harmfulIngredientName": "harmful_ingredient_permethrin_name"
+    }
+  ],
+  "ingredients": [
     {
       "ingredient": "{{ingredient_water}}",
       "quantity": "recipe_ugali_ingredient_water_quantity"
