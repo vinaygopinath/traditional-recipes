@@ -43,6 +43,18 @@ export class TextUtils {
     )
   }
 
+  public static getHarmfulIngredientStringWithArgs(
+    props: WithTranslation,
+    translationKey: string,
+    args: { [key: string]: any }
+  ): string {
+    return this.getString(
+      props,
+      `harmful-ingredients:${translationKey}`,
+      args
+    )
+  }
+
   public static getRecipeString(
     props: WithTranslation,
     translationKey: string,

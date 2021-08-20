@@ -1,4 +1,4 @@
-import { ResponsiveContext } from "grommet"
+import { Box, Main, ResponsiveContext } from "grommet"
 import React from "react"
 import { withTranslation, WithTranslation } from "react-i18next"
 import { connect, ConnectedProps } from "react-redux"
@@ -10,6 +10,7 @@ import { RootState } from "../../store/RootReducer"
 import { CountryUtils } from "../../utils/CountryUtils"
 import { RecipeUtils } from "../../utils/RecipeUtils"
 import { TextUtils } from "../../utils/TextUtils"
+import HarmfulIngredientDetail from "./harmful-ingredient-detail/HarmfulIngredientDetail"
 import RecipeBanner from "./recipe-banner/RecipeBanner"
 import RecipeContent from "./recipe-content/RecipeContent"
 
@@ -75,6 +76,14 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
     return TextUtils.getIngredientString(this.props, translationKey)
   }
 
+  showHarmfulIngredientDetails(size: string) {
+    return this.props.recipe?.harmfulIngredients.map((harmfulIngredient, index) => {
+      return (
+        <HarmfulIngredientDetail harmfulIngredient={harmfulIngredient} key={index} size={size}/>
+      )
+    })
+  }
+
   render() {
     const recipe = this.props.recipe
     if (!recipe || !this.state.isTranslationReady) {
@@ -84,7 +93,7 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
     return (
       <ResponsiveContext.Consumer>
         {(size) => (
-          <main>
+          <Main pad={{bottom: 'large'}}>
             <RecipeBanner
               size={size}
               recipe={recipe}
@@ -93,7 +102,10 @@ class RecipePage extends React.PureComponent<RecipePageProps, RecipeState> {
               }
             />
             <RecipeContent recipe={recipe} size={size}/>
-          </main>
+            <Box pad={{vertical: 'large'}}>
+              {this.showHarmfulIngredientDetails(size)}
+            </Box>
+          </Main>
         )}
       </ResponsiveContext.Consumer>
     )
