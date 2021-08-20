@@ -1,0 +1,17 @@
+@import "/src/styles/common";
+
+.harmful-ingredient-detail {
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
+.eu-ban-title {
+  color: $brand-warning-color;
+}
+
+@media screen and (max-width: $large-screen-max-width) {
+  .harmful-ingredient-detail {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+}
