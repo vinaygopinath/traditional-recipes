@@ -1,0 +1,11 @@
+@import "/src/styles/colors";
+
+.bonus-container {
+  padding-top: .5rem;
+}
+
+.bonus-label {
+  padding-left: 1rem;
+  color: $brand-status-error-color;
+  padding-right: .5rem;
+}

@@ -3,6 +3,7 @@ import React from "react"
 import { withTranslation, WithTranslation } from "react-i18next"
 import { Recipe } from "../../../../models/Recipe"
 import HarmfulIngredient from "./harmful-ingredient/HarmfulIngredient"
+import RecipeIngredientWithHarmfulLink from "./recipe-ingredient-with-harmful-link/RecipeIngredientWithHarmfulLink"
 import RecipeIngredient from "./recipe-ingredient/RecipeIngredient"
 import "./RecipeIngredientList.scss"
 type RecipeIngredientListProps = {
@@ -82,6 +83,18 @@ class RecipeIngredientList extends React.PureComponent<RecipeIngredientListProps
     })
   }
 
+  showRecipeIngredientsWithHarmfulLink() {
+    return this.props.recipe.ingredientsWithHarmfulLink.map((ingredient) => {
+      return (
+        <RecipeIngredientWithHarmfulLink
+          recipeIngredientWithHarmfulLink={ingredient}
+          key={ingredient.ingredient.id}
+          recipeId={this.props.recipe.id}
+        />
+      )
+    })
+  }
+
   showHarmfulIngredients() {
     return this.props.recipe.harmfulIngredients.map((harmfulIngredient) => {
       return (
@@ -107,6 +120,7 @@ class RecipeIngredientList extends React.PureComponent<RecipeIngredientListProps
 
   render() {
     return (<Box gridArea="ingredients">
+      {this.showRecipeIngredientsWithHarmfulLink()}
       {this.showRecipeIngredients()}
       <h4 className="special-ingredient-title">{this.getHarmfulIngredientTitle()}</h4>
       {this.showHarmfulIngredients()}

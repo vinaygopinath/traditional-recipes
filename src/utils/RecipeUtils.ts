@@ -3,6 +3,7 @@ import { HarmfulIngredient } from "../models/HarmfulIngredient";
 import { Ingredient } from "../models/Ingredient";
 import { Recipe } from "../models/Recipe";
 import { RecipeIngredient } from "../models/RecipeIngredient";
+import { RecipeIngredientWithHarmfulLink } from "../models/RecipeIngredientWithHarmfulLink";
 import { RecipePreview } from "../models/RecipePreview";
 import { SupportedCountry } from "../models/SupportedCountry";
 import { RecipeMap } from "./RecipeMap";
@@ -31,10 +32,12 @@ export class RecipeUtils {
     )
     const recipeIngredients = await this.fetchIngredients(recipePreview)
     const harmfulIngredients = await this.fetchHarmfulIngredients(recipePreview)
+    const recipeIngredientsWithHarmfulLink = await this.fetchIngredientsWithHarmfulLink(recipePreview)
 
     return Promise.resolve({
       ...recipePreview,
       ingredients: recipeIngredients,
+      ingredientsWithHarmfulLink: recipeIngredientsWithHarmfulLink,
       harmfulIngredients: harmfulIngredients
     } as Recipe)
   }
@@ -82,6 +85,26 @@ export class RecipeUtils {
         const harmfulIngredient = await this.getJSONByLocalPath(`/harmful-ingredients/${harmfulIngredientId}/${harmfulIngredientId}.json`)
 
         return Promise.resolve(harmfulIngredient)
+      })
+    )
+  }
+
+  private static async fetchIngredientsWithHarmfulLink(
+    recipePreview: RecipePreview
+  ): Promise<RecipeIngredientWithHarmfulLink[]> {
+    return Promise.all(
+      recipePreview.ingredientsWithHarmfulLink.map(async ingredientJSON => {
+        const ingredientId = RecipeUtils.getIngredientIdFromStringOrThrow(ingredientJSON.ingredient)
+        const ingredient: Ingredient = await this.getJSONByLocalPath(`/ingredients/${ingredientId}/${ingredientId}.json`)
+
+        const recipeIngredientWithHarmfulLink: RecipeIngredientWithHarmfulLink = {
+          ingredient: ingredient,
+          quantity: ingredientJSON.quantity,
+          note: ingredientJSON.note,
+          harmfulIngredientName: ingredientJSON.harmfulIngredientName
+        }
+
+        return Promise.resolve(recipeIngredientWithHarmfulLink)
       })
     )
   }
