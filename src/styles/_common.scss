@@ -10,6 +10,10 @@ $xlarge-screen-min-width: 1152px;
 $font-title: "RobotoSlab";
 $font-body: "Inter";
 
+body {
+  color: $text-body-color;
+}
+
 .title {
   font-family: $font-title;
   color: $text-title-color;
