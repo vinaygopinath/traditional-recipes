@@ -4,5 +4,6 @@
   "recipe_page_special_ingredients": "Special ingredients",
   "recipe_page_harmful_ingredient_intro1": "What is {{harmfulIngredientName}}?",
   "recipe_page_harmful_ingredient_intro2": "Why is {{harmfulIngredientName}} part of this recipe?",
-  "recipe_page_harmful_ingredient_intro3": "I've never heard of {{harmfulIngredientName}}. What does it do?"
+  "recipe_page_harmful_ingredient_intro3": "I've never heard of {{harmfulIngredientName}}. What does it do?",
+  "recipe_page_recipe_ingredient_bonus": "Bonus!"
 }
