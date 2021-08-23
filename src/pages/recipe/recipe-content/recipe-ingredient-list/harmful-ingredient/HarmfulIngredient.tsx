@@ -36,7 +36,7 @@ class HarmfulIngredient extends React.PureComponent<HarmfulIngredientProps> {
     return (
       <Grid columns={["1/4", "3/4"]} rows="full" height="xsmall" gap="small">
         <Box className="ingredient-image-container">
-          <IngredientIcon url={this.props.harmfulIngredient.image.url} />
+          <IngredientIcon url="/harmful-ingredients/images/poison.svg" />
         </Box>
         <Box alignContent="start" alignSelf="center">
           <div className="ingredient-title">{this.getIngredientDetails()}</div>
